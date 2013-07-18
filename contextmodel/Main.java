@@ -2,18 +2,23 @@ public class Main {
 	public static void main(String[] args) {
 		Aspect A1 = new Aspect("myAspect");
 		Aspect A2 = new Aspect("mySecondAspect");
-		Entity E = new Entity("myEntity");
+		Entity E1 = new Entity("myEntity");
+		Entity E2 = new Entity("mySecondEntity");
 
-		E.addAspect(A1);
-		E.addAspect(A2);
+		E1.addAspect(A1);
+		E1.addAspect(A2);
 		
-		E.printAllAspects();
+		E1.printAllAspects();
 		
-		Aspect retAspect = E.getAspect("myAspect");
+		Aspect retAspect = E1.getAspect("myAspect");
 		
 		System.out.println("return aspect is " + retAspect.getId());
 		
-		E.removeAspect(A1);
+		E1.removeAspect(A1);
+		
+		E1.attachEntity(new Predicate("myPredicate"), E2);
+		
+		
 		
 		
 
