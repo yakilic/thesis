@@ -9,11 +9,28 @@ public class Predicate {
 		return predicateString;
 	}
 	
-	public boolean equals(Predicate p) {
-		if (p.equals(this.predicateString))
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((predicateString == null) ? 0 : predicateString.hashCode());
+		return result;
+	}
+
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		else 
+		if (obj == null)
 			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Predicate other = (Predicate) obj;
+		if (predicateString == null) {
+			if (other.predicateString != null)
+				return false;
+		} else if (!predicateString.equals(other.predicateString))
+			return false;
+		return true;
 	}
 
 	public void setPredicateString(String predicateString) {

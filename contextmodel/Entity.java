@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -11,13 +12,38 @@ public class Entity {
 		super();
 		this.id = id;
 		aspectMap = new HashMap<String, Aspect>();
+		entityMap = new HashSet<PredicateEntityRelation>();
 	}
-	
-	public boolean equals(Entity e) {
-		if (e.id.equals(this.id))
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		else 
+		if (obj == null)
 			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Entity other = (Entity) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 	public void addAspect(Aspect A) {
@@ -43,10 +69,10 @@ public class Entity {
 	}
 	
 	public void printAllEntityRelations() {
+		int count = 0;
 		System.out.println("Entity \"" + this.getId() + "\" has following the entity relations:");
-		for(PredicateEntityRelation pe : entityMap) {
-	// TODO!		
-		}
+		for(PredicateEntityRelation pe : entityMap)
+			System.out.println(++count + ") E:" + this.getId() + " - P:" + pe.p.getPredicateString() + " - E:" + pe.e.getId());
 	}
 
 	public String getId() {
@@ -58,7 +84,11 @@ public class Entity {
 	}
 	
 	public void attachEntity(Predicate p, Entity e) {
-		entityMap.add(new PredicateEntityRelation(p, e));
+		PredicateEntityRelation pe = new PredicateEntityRelation(p, e);
+		
+		entityMap.add(pe);
+
+		
 	}
 
 	public void detachEntity(Predicate p, Entity e) {
@@ -66,10 +96,7 @@ public class Entity {
 			if (pe.equals(new PredicateEntityRelation(p, e)))
 				entityMap.remove(pe);
 			else
-				System.out.print("Entity:" + e.id + " was not found related to Entity:" + this.id);
+				System.out.println("Entity:" + e.id + " was not found related to Entity:" + this.id + " with Predicate:" + p.getPredicateString());
 		}
 	}
-	
-	
-
 }
