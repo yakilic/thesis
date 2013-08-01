@@ -1,7 +1,7 @@
-public abstract class Representation {
+public class Representation {
+	private String id;
 
-	public Representation() {
-
+	public String getId() {
+		return id;
 	}
-
 }

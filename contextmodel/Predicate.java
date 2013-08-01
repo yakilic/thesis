@@ -1,6 +1,6 @@
 public class Predicate {
 	private String predicateString;
-	
+
 	public Predicate(String predicateString) {
 		this.predicateString = new String(predicateString);
 	}
@@ -8,7 +8,7 @@ public class Predicate {
 	public String getPredicateString() {
 		return predicateString;
 	}
-	
+
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
