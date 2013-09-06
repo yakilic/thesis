@@ -2,9 +2,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Aspect {
+	private abstract class StandardRepresentation implements FromStandard {
+		private String id;
+
+		public String getId() {
+			return id;
+		}	
+	}
+	
+	
+	
+
+	
+	
 	private String id;
-	private Representation standardRepresentation;
+	private StandardRepresentation stdRep;
+	
+	private Set<Representation> representations;
 	private Set<InformationSource> informationSources;
+	
 
 	public Aspect(String id) {
 		this.id = id;

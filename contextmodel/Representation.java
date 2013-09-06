@@ -1,4 +1,4 @@
-public class Representation {
+abstract class Representation implements ToStandard {
 	private String id;
 
 	public String getId() {

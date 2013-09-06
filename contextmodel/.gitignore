@@ -8,3 +8,6 @@
 /PredicateEntityRelation.class
 /InformationSource.class
 /SensorData.class
+/Aspect$Representation.class
+/Entity$PredicateEntityRelation.class
+/Aspect$StandardRepresentation.class
