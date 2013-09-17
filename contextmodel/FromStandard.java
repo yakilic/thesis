@@ -1,3 +1,3 @@
 public interface FromStandard {
-	void mapFromStandard();
+	Representation mapFromStandard();
 }

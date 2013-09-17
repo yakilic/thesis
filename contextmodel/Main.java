@@ -9,6 +9,7 @@ public class Main {
 		Predicate P1 = new Predicate("myPredicate");
 		Predicate P2 = new Predicate("mySecondPredicate");
 		Predicate P3 = new Predicate("myPredicate");
+		
 
 		E1.addAspect(A1);
 		E1.addAspect(A2);
@@ -40,7 +41,5 @@ public class Main {
 
 		E1.printAllEntityRelations();
 		E2.printAllEntityRelations();
-
 	}
-
 }

@@ -1,3 +1,3 @@
 public interface ToStandard {
-	void mapToStandard();
+	StandardRepresentation mapToStandard();
 }

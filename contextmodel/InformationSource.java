@@ -1,4 +1,4 @@
-public class InformationSource {
+public abstract class InformationSource implements ToStandard {
 	private SensorData sensorData;
 	private String id;
 
