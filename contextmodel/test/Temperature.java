@@ -1,13 +1,11 @@
 package test;
 
 import src.Aspect;
-import src.AspectAlreadyCreatedException;
-import src.AspectIdIsNullException;
 import src.SensorData;
 
 public class Temperature extends Aspect {
 	
-	public Temperature(String id) throws AspectAlreadyCreatedException {
+	public Temperature(String id) {
 		super(id);
 	}
 	

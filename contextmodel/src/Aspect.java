@@ -12,9 +12,9 @@ public abstract class Aspect {
 	
 	private static HashMap<String, Aspect> aspects = new HashMap<String,Aspect>();
 
-	public Aspect(String id) throws AspectAlreadyCreatedException {
+	public Aspect(String id) {
 		if (aspects.containsKey(id)) {
-			throw new AspectAlreadyCreatedException();
+			throw new AssertionError("Aspect already present");
 		} 
 				
 		this.id = id;
