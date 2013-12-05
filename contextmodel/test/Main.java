@@ -1,3 +1,9 @@
+package test;
+import src.Aspect;
+import src.Entity;
+import src.Predicate;
+
+
 public class Main {
 	public static void main(String[] args) {
 		Aspect A1 = new Aspect("myAspect");

@@ -1,3 +1,4 @@
+package src;
 public class Predicate {
 	private String predicateString;
 

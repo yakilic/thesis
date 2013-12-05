@@ -1,3 +1,4 @@
+package src;
 public abstract class InformationSource implements ToStandard {
 	private SensorData sensorData;
 	private String id;
