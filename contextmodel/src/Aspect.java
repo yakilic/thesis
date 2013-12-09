@@ -1,9 +1,12 @@
 package src;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Aspect {
+public abstract class Aspect implements Serializable  {
+	private static final long serialVersionUID = -6057604798159608597L;
+	
 	private String id;
 	private StandardRepresentation stdRep;
 
@@ -40,9 +43,9 @@ public abstract class Aspect {
 			return false;
 	}
 
-	public abstract Object getDistance(Aspect A);
+	public abstract Serializable getDistance(Aspect a);
 
-	public abstract boolean validateData(SensorData sd);
+	public abstract Serializable validateData(Data d);
 
 	public void addRepresentation(Representation r) {
 		representations.add(r);

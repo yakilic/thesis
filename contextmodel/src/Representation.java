@@ -1,12 +1,15 @@
 package src;
-abstract class Representation implements ToStandard {
+
+import java.io.Serializable;
+
+public abstract class Representation implements ToStandard, Serializable {
+	private static final long serialVersionUID = -8801814070525794580L;
+	
 	private String id;
 
 	public String getId() {
 		return id;
 	}
-	
-	// TODO: HOW SHALL I TO REPRESENT THE VALUE OF REPRESENTATION?
-	// WHAT SHOULD IT RETURN
-	public abstract Object getValue();
+
+	public abstract Serializable getValue();
 }

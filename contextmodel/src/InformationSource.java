@@ -1,14 +1,19 @@
 package src;
-public abstract class InformationSource implements ToStandard {
-	private SensorData sensorData;
+
+import java.io.Serializable;
+
+public abstract class InformationSource implements ToStandard, Serializable {
+	private static final long serialVersionUID = 5746784687502503500L;
+	
+	private Data data;
 	private String id;
 
-	public SensorData getSensorData() {
-		return sensorData;
+	public Data getRawData() {
+		return data;
 	}
 
-	public void setSensorData(SensorData sensorData) {
-		this.sensorData = sensorData;
+	public void setRawData(Data data) {
+		this.data = data;
 	}
 
 	public String getId() {

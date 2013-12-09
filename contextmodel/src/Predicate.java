@@ -1,5 +1,10 @@
 package src;
-public class Predicate {
+
+import java.io.Serializable;
+
+public abstract class Predicate implements Serializable {
+	private static final long serialVersionUID = -7865277158467813038L; // generated UUID
+
 	private String predicateString;
 
 	public Predicate(String predicateString) {

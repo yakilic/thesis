@@ -1,23 +1,26 @@
 package test;
 
+import java.io.Serializable;
+
 import src.Aspect;
-import src.SensorData;
+import src.Data;
 
 public class Temperature extends Aspect {
-	
+	private static final long serialVersionUID = -3317362404221068456L;
+
 	public Temperature(String id) {
 		super(id);
 	}
 	
 
 	@Override
-	public Object getDistance(Aspect A) {
+	public Serializable getDistance(Aspect a) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean validateData(SensorData sd) {
+	public Serializable validateData(Data sd) {
 		// TODO Auto-generated method stub
 		return false;
 	}
