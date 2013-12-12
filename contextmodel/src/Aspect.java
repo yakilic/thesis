@@ -13,7 +13,7 @@ public abstract class Aspect implements Serializable  {
 	private Set<Representation> representations;
 	private Set<InformationSource> informationSources;
 	
-	private static HashMap<String, Aspect> aspects = new HashMap<String,Aspect>();
+
 
 	public Aspect(String id) {
 		if (aspects.containsKey(id)) {
