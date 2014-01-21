@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Aspect implements Serializable  {
+public abstract class Aspect implements Serializable, Comparable<Aspect>  {
 	private static final long serialVersionUID = -6057604798159608597L;
-
+	
 	private String id;
 
 	private Set<Representation> representations;
@@ -36,30 +36,40 @@ public abstract class Aspect implements Serializable  {
 	public String getId() {
 		return id;
 	}
-
-	// Making this function abstract...
-	//	public boolean compareTo(Aspect A) {
-	//		if (A.defaultRepresentation.getValue().equals(this.defaultRepresentation.getValue()))
-	//			return true;
-	//		else
-	//			return false;
-	//	}
 	
 	public abstract boolean isEqual(Aspect A);
 	
+	//  Returns a negative integer, zero, or a positive integer as this Aspect is less than, equal to, or greater than the specified Aspect.
+	// Should be implemented by the ontology builder comparable interface
+	//public abstract int compareTo(Aspect A);
+	
 	public abstract Serializable getDistance(Aspect a);
 
+	// TODO: How will this be used?
 	public abstract Serializable validateData(Data d);
 
+	// List of representations for users to be able to search
 	public void addRepresentation(Representation r) {
 		representations.add(r);
 	}
 
 	public void setStandardRepresentation(Representation r) {
 		if (representations.contains(r))
-			defaultRepresentation = r.mapToStandard(); 
+			defaultRepresentation = r; 
+		
+		// TODO: From ontology call a function getValue
 	}
-
+	
+	// This function will return the value in defaultRepresentation
+	public abstract Serializable getValue();
+	
+	// This function will return the value in the given representation
+	public abstract Serializable getValue(String representationClassName);
+	
+	// TODO: pass the class name or type instead of object
+	// TODO: pass as a string class name and do DYNAMIC CLASS LOADING of the class by name
+	// careful when calling metods which are not available, only call from interface
+	// JAVA REFLECTION
 	public void removeRepresentation(Representation r) {
 		if (representations.contains(r))
 			representations.remove(r);

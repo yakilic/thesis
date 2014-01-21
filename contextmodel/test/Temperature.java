@@ -32,4 +32,25 @@ public class Temperature extends Aspect {
 		return false;
 	}
 
+
+	@Override
+	public Serializable getValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Serializable getValue(String representationClassName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public int compareTo(Aspect arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

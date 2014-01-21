@@ -26,6 +26,8 @@ public class Ontology {
 //	I can not create an Aspect since it is abstract?
 //	Maybe make aspect creation outside and make a method Ontology.addAspect(Aspect a)
 	
+	// USE DYNAMIC CLASS LOADING AND REFER BY CLASS NAME
+	
 //	public Aspect createAspect(String id)
 //	{
 //		

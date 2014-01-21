@@ -2,7 +2,7 @@ package src;
 
 import java.io.Serializable;
 
-public abstract class InformationSource implements ToDefault, Serializable {
+public abstract class InformationSource implements Serializable {
 	private static final long serialVersionUID = 5746784687502503500L;
 	
 	private Data data;
