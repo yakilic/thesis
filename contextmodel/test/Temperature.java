@@ -25,4 +25,11 @@ public class Temperature extends Aspect {
 		return false;
 	}
 
+
+	@Override
+	public boolean isEqual(Aspect A) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

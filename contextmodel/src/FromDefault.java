@@ -1,5 +1,5 @@
 package src;
 
-public interface FromStandard {
+public interface FromDefault {
 	Representation mapFromStandard();
 }

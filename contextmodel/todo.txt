@@ -2,4 +2,9 @@
 - Information Source should return a Representation
 - Force exception in abstract functions(type-checking)
 - Have an entry point class (Ontology)
-- Persistance manager ( CRUDA model )
+- Persistence manager ( CRUDA model )
+
+- Fix Representation/Default Representation
+- Questions about ontology implementation 
+
+- TEST of course...

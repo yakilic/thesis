@@ -1,42 +1,53 @@
 package src;
 
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Ontology {
 	private String id;
-	private HashMap<String, Aspect> aspects;
-	private HashMap<String, Entity> entities;
+	
+	// TODO: Shall we replaced with persistance manager
+	//private HashMap<String, Aspect> aspects;
+	private Set<Entity> entities = new HashSet<Entity>();
 		
+	
 	public Ontology(String id)
 	{
+		// TODO: Store ontologies in persistance manager
 		setId(id);
 		
 		// TODO: Storage shall be persistent later on
-		aspects = new HashMap<String,Aspect>();
-		entities = new HashMap<String, Entity>();
+		// aspects = new HashMap<String,Aspect>();
+		entities = new HashSet<Entity>();
 	}
 	
-	public Aspect createAspect(String id)
+	
+//	TODO: How am I going to implement this function?
+//	I can not create an Aspect since it is abstract?
+//	Maybe make aspect creation outside and make a method Ontology.addAspect(Aspect a)
+	
+//	public Aspect createAspect(String id)
+//	{
+//		
+//		Aspect a = new Aspect(id);
+//		aspects.put(id, a);
+//		return a;
+//	}
+	
+	public void addEntity(Entity e)
 	{
-		Aspect a = new Aspect(id);
-		aspects.put(id, a);
-		return a;
+		if (entities.contains(e)) {
+			throw new AssertionError("Entity already present in ontology");		} 
+		
+		entities.add(e);
 	}
+	
 
-	/**
-	 * @return the id
-	 */
 	public String getId() {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	
-	
 }
