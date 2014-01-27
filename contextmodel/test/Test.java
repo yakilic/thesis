@@ -1,8 +1,9 @@
 package test;
 
+import src.Ontology;
+
 public class Test {
-	public static void main(String[] args) {
-		
+	public static void test1() {
 		Temperature t1 = null, t2 = null, t3 = null, t4 = null;
 		
 		t1 = new Temperature("CpuTemp");
@@ -14,6 +15,28 @@ public class Test {
 		t3 = new Temperature(null);
 		
 		t4 = new Temperature(new String());
+		
+	}
+	
+	
+	public static void test2() {
+		Ontology o = new Ontology("myOnto");
+		
+		o.createEntity("Temperature");
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		//test1();
+		
+		test2();
+		
+		
+		
+
+		
 		
 	}
 }
