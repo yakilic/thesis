@@ -1,4 +1,4 @@
-package src;
+package api;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,22 +10,23 @@ public class Ontology {
 	private Set<Entity> entities = new HashSet<Entity>();
 	private Set<Aspect> aspects = new HashSet<Aspect>();	
 
-	private ClassLoader systemClassLoader;
-
+	//private ClassLoader systemClassLoader;
 
 	public Ontology(String id)
 	{
 		// TODO: Store ontologies in persistence manager
 		setId(id);
 
-		systemClassLoader = ClassLoader.getSystemClassLoader();
+	//	systemClassLoader = ClassLoader.getSystemClassLoader();
 
 		// TODO: Storage shall be persistent later on
 		entities = new HashSet<Entity>();
 		aspects = new HashSet<Aspect>();
 	}
-
-
+	
+	private void store(OntologyObject oo) {
+		
+	}
 
 	private void storeEntity(Entity e) {
 		if (entities.contains(e)) {
@@ -40,9 +41,27 @@ public class Ontology {
 
 		aspects.add(a);
 	}
+	
+	private <T> T instantiate(final String className, final Class<T> type) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+	    return type.cast(Class.forName(className).newInstance());
+	}
 
+	private <T> void createAndStoreOntologyMember(String className, Class<T> T) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+	{
+		T t = instantiate(className, T);
+		store((OntologyObject) t);
+	}
+	
 
-
+	public void createEntity(String entityClassName) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		createAndStoreOntologyMember(entityClassName, Entity.class);
+	}		
+	
+	public void createAspect(String aspectClassName) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		createAndStoreOntologyMember(aspectClassName, Aspect.class);
+	}		
+	
+	/*
 	public void createEntity(String entityClassName) {
 		//Entity e = (Entity)
 		//    EntityLoader.newInstance(entityClassName);
@@ -63,7 +82,8 @@ public class Ontology {
 			e.printStackTrace();
 		}
 	}
-
+	*/
+/*
 	public void createAspect(String aspectClassName) {
 		//Entity e = (Entity)
 		//    EntityLoader.newInstance(entityClassName);
@@ -84,6 +104,7 @@ public class Ontology {
 			e.printStackTrace();
 		}
 	}
+	*/
 
 	public String getId() {
 		return id;

@@ -1,9 +1,9 @@
-package test;
+package src;
 
 import java.io.Serializable;
 
-import src.Aspect;
-import src.Data;
+import api.Aspect;
+import api.Data;
 
 public class Temperature extends Aspect {
 	private static final long serialVersionUID = -3317362404221068456L;

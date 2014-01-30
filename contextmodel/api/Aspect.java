@@ -1,10 +1,10 @@
-package src;
+package api;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Aspect implements Serializable, Comparable<Aspect>  {
+public abstract class Aspect implements Serializable, Comparable<Aspect>, OntologyObject  {
 	private static final long serialVersionUID = -6057604798159608597L;
 	
 	private String id;

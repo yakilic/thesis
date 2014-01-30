@@ -1,6 +1,7 @@
 package test;
 
-import src.Ontology;
+import src.Temperature;
+import api.Ontology;
 
 public class Test {
 	public static void test1() {
@@ -22,7 +23,13 @@ public class Test {
 	public static void test2() {
 		Ontology o = new Ontology("myOnto");
 		
-		o.createEntity("Temperature");
+		try {
+			o.createEntity("src.Temperature");
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
