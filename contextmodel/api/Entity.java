@@ -1,4 +1,5 @@
 package api;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +9,7 @@ public abstract class Entity implements Serializable, OntologyObject {
 
 	private static class PredicateEntityRelation implements Serializable {
 		private static final long serialVersionUID = 2589171509119358834L;
-		
+
 		Predicate p;
 		Entity e;
 

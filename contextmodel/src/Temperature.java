@@ -11,7 +11,6 @@ public class Temperature extends Aspect {
 	public Temperature(String id) {
 		super(id);
 	}
-	
 
 	@Override
 	public Serializable getDistance(Aspect a) {
@@ -25,13 +24,11 @@ public class Temperature extends Aspect {
 		return false;
 	}
 
-
 	@Override
 	public boolean isEqual(Aspect A) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 	@Override
 	public Serializable getValue() {
@@ -39,13 +36,11 @@ public class Temperature extends Aspect {
 		return null;
 	}
 
-
 	@Override
 	public Serializable getValue(String representationClassName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	@Override
 	public int compareTo(Aspect arg0) {
