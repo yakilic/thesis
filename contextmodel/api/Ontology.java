@@ -50,51 +50,24 @@ public class Ontology {
 		aspects.put(a.getId(), a);
 	}
 
-	/*
-	 * can't get this to work, should do brute force-(separate function for all
-	 * types) i guess.. or maybe it will not work... since i need generic
-	 * constructor calls for each class type like for entity.class =
-	 * temperature, i should call new temperature(id) how??
-	 */
-	/*
-	 * i should also make sure that i instantiate the subclass, not the base
-	 * class, i.e temperature instead of entity. if i comment out first two
-	 * lines i try to instantiate entity and exception is thrown
-	 * sun.reflect.InstantiationExceptionConstructorAccessorImpl
-	 * .newInstance(Unknown Source)
-	 */
-	/* how can i get the sub class type here ? */
-	/*
-	 * few lines of code... but took me a lot of time, and still can't get my
-	 * head around it. Shows that LOC calculation is worth nothing...
-	 */
-	/* how to get rid of the unchecked casts? */
-	private <T> T instantiate(final String className, final Class<T> type,
+	private void createAndStoreOntologyMember(final String className,
 			final String id) throws ClassNotFoundException,
 			NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException {
-		//	get class type for entity subclass, i.e temperature for entity
-		//	couldnt get this to work properly without the unchecked cast
-		//Class<? extends T> c = (Class<? extends T>) Class.forName(className);
-		// so i have added the following line, which does not solve the problem; just hides it for a brief time...
+		//	T t = instantiate(className, T, id);
+	//	store((OntologyObject) t);
+		
 		Class<?> c = Class.forName(className);
 		
-		Constructor<?> ctor = c.getConstructor(String.class);
-		return type.cast(ctor.newInstance(id));  
-		/* and of course.. can not cast temperature to entity, this will fail-> classCastException
-		 * java.lang.ClassCastException: Cannot cast src.Temperature to api.Entity
-		 * I "know" that "T" is a subclass of "type" yet how do i express this to java? 
-		 */
-	}
+//		System.out.println(c.getCanonicalName()); 
+		
 
-	private <T> void createAndStoreOntologyMember(final String className,
-			Class<T> T, final String id) throws InstantiationException,
-			IllegalAccessException, ClassNotFoundException,
-			NoSuchMethodException, SecurityException, IllegalArgumentException,
-			InvocationTargetException {
-		T t = instantiate(className, T, id);
-		store((OntologyObject) t);
+		Constructor<?> ctor = c.getConstructor(String.class);
+		
+		Object o = ctor.newInstance(id);
+		if (o instanceof Entity)
+			storeEntity((Entity) o );
 	}
 
 	public void createEntity(String entityClassName, final String id)
