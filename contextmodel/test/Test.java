@@ -28,6 +28,14 @@ public class Test {
 			e.printStackTrace();
 		}
 		
+		try {
+			o.createAspect("src.Temperature", "Temp1");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(o.getEntity("Temp1").getId());
+		
 		System.out.println(o.getEntity("Temp1").getId());
 		
 	}

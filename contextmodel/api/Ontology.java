@@ -27,7 +27,11 @@ public class Ontology {
 	}
 	
 	public Entity getEntity(String id) {
+		if (entities.containsKey(id)) {
 			return entities.get(id);
+		} else {
+			throw new RuntimeException("Entity " + id + " not found");
+		}	
 	}
 
 	private void store(OntologyObject oo) {
@@ -50,24 +54,36 @@ public class Ontology {
 		aspects.put(a.getId(), a);
 	}
 
-	private void createAndStoreOntologyMember(final String className,
+	/* how to get rid of the unchecked casts? */
+	private <T> T instantiate(final String className, final Class<T> type,
 			final String id) throws ClassNotFoundException,
 			NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException {
-		//	T t = instantiate(className, T, id);
-	//	store((OntologyObject) t);
-		
+		//	get class type for entity subclass, i.e temperature for entity
+		//	couldnt get this to work properly without the unchecked cast
+		//Class<? extends T> c = (Class<? extends T>) Class.forName(className);
+		// so i have added the following line, which does not solve the problem; just hides it for a brief time...
 		Class<?> c = Class.forName(className);
 		
-//		System.out.println(c.getCanonicalName()); 
-		
-
 		Constructor<?> ctor = c.getConstructor(String.class);
 		
 		Object o = ctor.newInstance(id);
-		if (o instanceof Entity)
-			storeEntity((Entity) o );
+		
+		if (!type.isAssignableFrom(o.getClass())) {
+			System.err.println("ERROR:Incompatible types. " + o.getClass() + " is not of type " + type);
+		}
+			
+		return type.cast(ctor.newInstance(id));			
+	}
+	
+	private <T> void createAndStoreOntologyMember(final String className,
+			Class<T> T, final String id) throws InstantiationException,
+			IllegalAccessException, ClassNotFoundException,
+			NoSuchMethodException, SecurityException, IllegalArgumentException,
+			InvocationTargetException {
+		T t = instantiate(className, T, id);
+		store((OntologyObject) t);
 	}
 
 	public void createEntity(String entityClassName, final String id)
