@@ -2,17 +2,17 @@ package api;
 
 import java.io.Serializable;
 
-public abstract class InformationSource implements Serializable {
+public abstract class AbstractInformationSource implements Serializable {
 	private static final long serialVersionUID = 5746784687502503500L;
 
-	private Data data;
+	private AbstractData data;
 	private String id;
 
-	public Data getRawData() {
+	public AbstractData getRawData() {
 		return data;
 	}
 
-	public void setRawData(Data data) {
+	public void setRawData(AbstractData data) {
 		this.data = data;
 	}
 

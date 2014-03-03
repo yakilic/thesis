@@ -3,6 +3,8 @@ package test;
 import java.lang.reflect.InvocationTargetException;
 
 import src.Temperature;
+import api.AbstractAspect;
+import api.AbstractEntity;
 import api.Ontology;
 
 public class Test {
@@ -20,16 +22,13 @@ public class Test {
 		Ontology o = new Ontology("myOnto");
 
 		try {
-			o.createEntity("src.Temperature", "Temp1");
-		} catch (InstantiationException | IllegalAccessException
-				| ClassNotFoundException | NoSuchMethodException
-				| SecurityException | IllegalArgumentException
-				| InvocationTargetException e) {
+			o.createOntologyObject("src.Temperature", AbstractEntity.class, "Temp1");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			o.createAspect("src.Temperature", "Temp1");
+			o.createOntologyObject("src.Temperature", AbstractAspect.class, "Temp1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

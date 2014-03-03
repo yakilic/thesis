@@ -4,16 +4,16 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Entity implements Serializable, OntologyObject {
+public abstract class AbstractEntity implements Serializable, OntologyObject {
 	private static final long serialVersionUID = 5853459222460987743L;
 
 	private static class PredicateEntityRelation implements Serializable {
 		private static final long serialVersionUID = 2589171509119358834L;
 
-		Predicate p;
-		Entity e;
+		AbstractPredicate p;
+		AbstractEntity e;
 
-		public PredicateEntityRelation(Predicate p, Entity e) {
+		public PredicateEntityRelation(AbstractPredicate p, AbstractEntity e) {
 			this.p = p;
 			this.e = e;
 		}
@@ -48,13 +48,13 @@ public abstract class Entity implements Serializable, OntologyObject {
 		}
 	}
 
-	private Set<Aspect> aspects;
+	private Set<AbstractAspect> aspects;
 	private String id;
 	private Set<PredicateEntityRelation> entityMap;
 
-	public Entity(String id) {
+	public AbstractEntity(String id) {
 		this.id = id;
-		aspects = new HashSet<Aspect>();
+		aspects = new HashSet<AbstractAspect>();
 		entityMap = new HashSet<PredicateEntityRelation>();
 	}
 
@@ -72,7 +72,7 @@ public abstract class Entity implements Serializable, OntologyObject {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Entity other = (Entity) obj;
+		AbstractEntity other = (AbstractEntity) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -81,12 +81,12 @@ public abstract class Entity implements Serializable, OntologyObject {
 		return true;
 	}
 
-	public void addAspect(Aspect A) {
+	public void addAspect(AbstractAspect A) {
 		aspects.add(A);
 	}
 
-	public Aspect getAspect(String aspectName) {
-		for (Aspect a : aspects) {
+	public AbstractAspect getAspect(String aspectName) {
+		for (AbstractAspect a : aspects) {
 			if (a.getId().equals(aspectName))
 				return a;
 		}
@@ -96,7 +96,7 @@ public abstract class Entity implements Serializable, OntologyObject {
 		return null;
 	}
 
-	public void removeAspect(Aspect A) {
+	public void removeAspect(AbstractAspect A) {
 		if (aspects.contains(A))
 			aspects.remove(A);
 		else
@@ -109,7 +109,7 @@ public abstract class Entity implements Serializable, OntologyObject {
 
 		System.out.println("Entity:" + this.getId()
 				+ " has the following aspects:");
-		for (Aspect a : aspects)
+		for (AbstractAspect a : aspects)
 			System.out.println(++count + ") " + a.getId());
 
 		System.out.println();
@@ -131,12 +131,12 @@ public abstract class Entity implements Serializable, OntologyObject {
 		return id;
 	}
 
-	public void attachEntity(Predicate p, Entity e) {
+	public void attachEntity(AbstractPredicate p, AbstractEntity e) {
 		PredicateEntityRelation pe = new PredicateEntityRelation(p, e);
 		entityMap.add(pe);
 	}
 
-	public void detachEntity(Predicate p, Entity e) {
+	public void detachEntity(AbstractPredicate p, AbstractEntity e) {
 		for (PredicateEntityRelation pe : entityMap) {
 			if (pe.equals(new PredicateEntityRelation(p, e)))
 				entityMap.remove(pe);

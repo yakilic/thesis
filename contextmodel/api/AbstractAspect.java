@@ -5,42 +5,30 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Aspect implements Serializable, Comparable<Aspect>,
+public abstract class AbstractAspect implements Serializable, Comparable<AbstractAspect>,
 		OntologyObject {
 	private static final long serialVersionUID = -6057604798159608597L;
 
 	private String id;
 
-	private Set<Representation> representations;
-	private Set<InformationSource> informationSources;
+	private Set<AbstractRepresentation> representations;
+	private Set<AbstractInformationSource> informationSources;
 
-	private Representation defaultRepresentation;
+	private AbstractRepresentation defaultRepresentation;
 
-	private static HashMap<String, Aspect> aspects = new HashMap<String, Aspect>(); // TODO:
-																					// This
-																					// will
-																					// be
-																					// changed
-																					// when
-																					// persistance
-																					// manager
-																					// is
-																					// in
-																					// place
+	// TODO:	Swap with persistance manager
+	private static HashMap<String, AbstractAspect> aspects = new HashMap<String, AbstractAspect>(); 
+	
 
-	public Aspect(String id) {
+	public AbstractAspect(String id) {
 		if (aspects.containsKey(id)) {
 			throw new AssertionError("Aspect already present");
 		}
 
 		this.id = id;
 
-		if (id == null) {
-			throw new AssertionError("AspectId is null");
-		}
-
-		informationSources = new HashSet<InformationSource>();
-		representations = new HashSet<Representation>();
+		informationSources = new HashSet<AbstractInformationSource>();
+		representations = new HashSet<AbstractRepresentation>();
 
 		aspects.put(this.id, this);
 	}
@@ -49,24 +37,23 @@ public abstract class Aspect implements Serializable, Comparable<Aspect>,
 		return id;
 	}
 
-	public abstract boolean isEqual(Aspect A);
+	public abstract boolean isEqual(AbstractAspect A);
 
 	// Returns a negative integer, zero, or a positive integer as this Aspect is
 	// less than, equal to, or greater than the specified Aspect.
 	// Should be implemented by the ontology builder comparable interface
 	// public abstract int compareTo(Aspect A);
-
-	public abstract Serializable getDistance(Aspect a);
+	public abstract Serializable getDistance(AbstractAspect a);
 
 	// TODO: How will this be used?
-	public abstract Serializable validateData(Data d);
+	public abstract Serializable validateData(AbstractData d);
 
 	// List of representations for users to be able to search
-	public void addRepresentation(Representation r) {
+	public void addRepresentation(AbstractRepresentation r) {
 		representations.add(r);
 	}
 
-	public void setStandardRepresentation(Representation r) {
+	public void setStandardRepresentation(AbstractRepresentation r) {
 		if (representations.contains(r))
 			defaultRepresentation = r;
 
@@ -85,7 +72,7 @@ public abstract class Aspect implements Serializable, Comparable<Aspect>,
 	// careful when calling metods which are not available, only call from
 	// interface
 	// JAVA REFLECTION
-	public void removeRepresentation(Representation r) {
+	public void removeRepresentation(AbstractRepresentation r) {
 		if (representations.contains(r))
 			representations.remove(r);
 		else
@@ -93,11 +80,11 @@ public abstract class Aspect implements Serializable, Comparable<Aspect>,
 					+ " was not found in Aspect:" + this.getId());
 	}
 
-	public void addInformationSource(InformationSource is) {
+	public void addInformationSource(AbstractInformationSource is) {
 		informationSources.add(is);
 	}
 
-	public void removeInformationSource(InformationSource is) {
+	public void removeInformationSource(AbstractInformationSource is) {
 		if (informationSources.contains(is))
 			informationSources.remove(is);
 		else
@@ -105,11 +92,11 @@ public abstract class Aspect implements Serializable, Comparable<Aspect>,
 					+ " was not found in Aspect:" + this.getId());
 	}
 
-	public Representation getDefaultRepresentation() {
+	public AbstractRepresentation getDefaultRepresentation() {
 		return defaultRepresentation;
 	}
 
-	public void setDefaultRepresentation(Representation defaultRepresentation) {
+	public void setDefaultRepresentation(AbstractRepresentation defaultRepresentation) {
 		this.defaultRepresentation = defaultRepresentation;
 	}
 }

@@ -2,10 +2,10 @@ package src;
 
 import java.io.Serializable;
 
-import api.Aspect;
-import api.Data;
+import api.AbstractAspect;
+import api.AbstractData;
 
-public class Temperature extends Aspect {
+public class Temperature extends AbstractAspect {
 	private static final long serialVersionUID = -3317362404221068456L;
 
 	public Temperature(String id) {
@@ -13,19 +13,19 @@ public class Temperature extends Aspect {
 	}
 
 	@Override
-	public Serializable getDistance(Aspect a) {
+	public Serializable getDistance(AbstractAspect a) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Serializable validateData(Data sd) {
+	public Serializable validateData(AbstractData sd) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean isEqual(Aspect A) {
+	public boolean isEqual(AbstractAspect A) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -43,7 +43,7 @@ public class Temperature extends Aspect {
 	}
 
 	@Override
-	public int compareTo(Aspect arg0) {
+	public int compareTo(AbstractAspect arg0) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
