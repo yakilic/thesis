@@ -5,32 +5,19 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class AbstractAspect implements Serializable, Comparable<AbstractAspect>,
-		OntologyObject {
+public abstract class AbstractAspect extends AbstractOntologyObject implements Comparable<AbstractAspect> {
 	private static final long serialVersionUID = -6057604798159608597L;
-
-	private String id;
 
 	private Set<AbstractRepresentation> representations;
 	private Set<AbstractInformationSource> informationSources;
 
 	private AbstractRepresentation defaultRepresentation;
 
-	// TODO:	Swap with persistance manager
-	private static HashMap<String, AbstractAspect> aspects = new HashMap<String, AbstractAspect>(); 
-	
-
 	public AbstractAspect(String id) {
-		if (aspects.containsKey(id)) {
-			throw new AssertionError("Aspect already present");
-		}
-
 		this.id = id;
 
 		informationSources = new HashSet<AbstractInformationSource>();
 		representations = new HashSet<AbstractRepresentation>();
-
-		aspects.put(this.id, this);
 	}
 
 	public String getId() {
@@ -56,8 +43,6 @@ public abstract class AbstractAspect implements Serializable, Comparable<Abstrac
 	public void setStandardRepresentation(AbstractRepresentation r) {
 		if (representations.contains(r))
 			defaultRepresentation = r;
-
-		// TODO: From ontology call a function getValue
 	}
 
 	// This function will return the value in defaultRepresentation
@@ -66,12 +51,6 @@ public abstract class AbstractAspect implements Serializable, Comparable<Abstrac
 	// This function will return the value in the given representation
 	public abstract Serializable getValue(String representationClassName);
 
-	// TODO: pass the class name or type instead of object
-	// TODO: pass as a string class name and do DYNAMIC CLASS LOADING of the
-	// class by name
-	// careful when calling metods which are not available, only call from
-	// interface
-	// JAVA REFLECTION
 	public void removeRepresentation(AbstractRepresentation r) {
 		if (representations.contains(r))
 			representations.remove(r);

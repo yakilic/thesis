@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class AbstractEntity implements Serializable, OntologyObject {
+public abstract class AbstractEntity extends AbstractOntologyObject  {
 	private static final long serialVersionUID = 5853459222460987743L;
 
 	private static class PredicateEntityRelation implements Serializable {
@@ -49,7 +49,7 @@ public abstract class AbstractEntity implements Serializable, OntologyObject {
 	}
 
 	private Set<AbstractAspect> aspects;
-	private String id;
+	
 	private Set<PredicateEntityRelation> entityMap;
 
 	public AbstractEntity(String id) {
@@ -125,10 +125,6 @@ public abstract class AbstractEntity implements Serializable, OntologyObject {
 					+ " - Entity:" + pe.e.getId());
 
 		System.out.println();
-	}
-
-	public String getId() {
-		return id;
 	}
 
 	public void attachEntity(AbstractPredicate p, AbstractEntity e) {

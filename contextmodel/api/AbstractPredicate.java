@@ -1,10 +1,7 @@
 package api;
 
-import java.io.Serializable;
-
-public abstract class AbstractPredicate implements Serializable {
-	private static final long serialVersionUID = -7865277158467813038L; // generated
-																		// UUID
+public abstract class AbstractPredicate extends AbstractOntologyObject {
+	private static final long serialVersionUID = -7865277158467813038L;
 
 	private String predicateString;
 
@@ -38,9 +35,5 @@ public abstract class AbstractPredicate implements Serializable {
 		} else if (!predicateString.equals(other.predicateString))
 			return false;
 		return true;
-	}
-
-	public void setPredicateString(String predicateString) {
-		this.predicateString = predicateString;
 	}
 }

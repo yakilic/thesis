@@ -25,7 +25,7 @@ public class Ontology {
 		}
 	}
 
-	private void store(OntologyObject oo) {
+	private void store(AbstractOntologyObject oo) {
 		// TODO, stub
 	}
 
@@ -45,7 +45,7 @@ public class Ontology {
 		aspects.put(a.getId(), a);
 	}
 
-	private <T> T instantiateOntologyObject(final String className,
+	private <T> T instantiateOntologyObject(final String className, 
 			final Class<T> type, final String id) throws Exception {
 		Class<?> c = Class.forName(className);
 
@@ -61,10 +61,10 @@ public class Ontology {
 		return type.cast(ctor.newInstance(id));
 	}
 
-	public OntologyObject createOntologyObject(String className,
-			final Class<? extends OntologyObject> type, final String id)
+	public AbstractOntologyObject createOntologyObject(String className,
+			final Class<? extends AbstractOntologyObject> type, final String id)
 			throws Exception {
-		OntologyObject oo = instantiateOntologyObject(className, type, id);
+		AbstractOntologyObject oo = instantiateOntologyObject(className, type, id);
 		return oo;
 	}
 }

@@ -20,12 +20,13 @@ public class Test {
 
 	public static void test2() {
 		Ontology o = new Ontology("myOnto");
-
+/*
 		try {
 			o.createOntologyObject("src.Temperature", AbstractEntity.class, "Temp1");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
 		
 		try {
 			o.createOntologyObject("src.Temperature", AbstractAspect.class, "Temp1");
@@ -33,9 +34,9 @@ public class Test {
 			e.printStackTrace();
 		}
 		
-		System.out.println(o.getEntity("Temp1").getId());
+	//System.out.println(o.getEntity("Temp1").getId());
 		
-		System.out.println(o.getEntity("Temp1").getId());
+	//System.out.println(o.getEntity("Temp1").getId());
 		
 	}
 
