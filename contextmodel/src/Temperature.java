@@ -13,9 +13,9 @@ public class Temperature extends AbstractAspect {
 	}
 
 	@Override
-	public Serializable getDistance(AbstractAspect a) {
-		// TODO Auto-generated method stub
-		return null;
+	public Serializable getDistance(AbstractAspect a, String representation) {
+		return new Double(1);
+		//return (this.getValue() - a.getValue());
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class Temperature extends AbstractAspect {
 	@Override
 	public Serializable getValue(String representationClassName) {
 		// TODO Auto-generated method stub
-		return null;
+		return 8;
 	}
 
 	@Override

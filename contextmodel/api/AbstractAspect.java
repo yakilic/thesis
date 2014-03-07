@@ -11,6 +11,8 @@ public abstract class AbstractAspect extends AbstractOntologyObject implements C
 	private Set<AbstractRepresentation> representations;
 	private Set<AbstractInformationSource> informationSources;
 
+	private Serializable value;
+	
 	private AbstractRepresentation defaultRepresentation;
 
 	public AbstractAspect(String id) {
@@ -18,10 +20,6 @@ public abstract class AbstractAspect extends AbstractOntologyObject implements C
 
 		informationSources = new HashSet<AbstractInformationSource>();
 		representations = new HashSet<AbstractRepresentation>();
-	}
-
-	public String getId() {
-		return id;
 	}
 
 	public abstract boolean isEqual(AbstractAspect A);
@@ -40,16 +38,11 @@ public abstract class AbstractAspect extends AbstractOntologyObject implements C
 		representations.add(r);
 	}
 
-	public void setStandardRepresentation(AbstractRepresentation r) {
-		if (representations.contains(r))
-			defaultRepresentation = r;
-	}
-
 	// This function will return the value in defaultRepresentation
-	public abstract Serializable getValue();
+	public abstract Serializable getValueInDefaultRepresentation();
 
 	// This function will return the value in the given representation
-	public abstract Serializable getValue(String representationClassName);
+	public abstract Serializable getValue(String representation);
 
 	public void removeRepresentation(AbstractRepresentation r) {
 		if (representations.contains(r))
@@ -75,7 +68,8 @@ public abstract class AbstractAspect extends AbstractOntologyObject implements C
 		return defaultRepresentation;
 	}
 
-	public void setDefaultRepresentation(AbstractRepresentation defaultRepresentation) {
-		this.defaultRepresentation = defaultRepresentation;
+	public void setDefaultRepresentation(AbstractRepresentation r) {
+		if (representations.contains(r))
+			this.defaultRepresentation = r;
 	}
 }
